@@ -1,0 +1,7 @@
+{
+  "name": "dev-app",
+  "db": {
+    "host":"localhost",
+    "pass": "admin"
+  }
+}

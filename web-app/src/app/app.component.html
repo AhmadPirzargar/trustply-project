@@ -1,0 +1,51 @@
+<mat-toolbar color="primary" class="expanded-toolbar">
+    <span>
+      <button mat-button routerLink="/">
+        <img src="../assets/logo.png" height="32"/>
+      </button>
+      <button mat-button *ngIf="authService.isLogedIn()">
+        <mat-icon>notification_important</mat-icon>
+      </button>
+      <button mat-button routerLink="/"><mat-icon>home</mat-icon></button>
+    </span>
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <button mat-icon-button style="margin: 20px;" routerLink="/profile" *ngIf="authService.isLogedIn()">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <button mat-button routerLink="/login" *ngIf="!authService.isLogedIn()">
+      <mat-icon>power_settings_new</mat-icon>
+      Login
+    </button>
+    <button mat-button *ngIf="authService.isLogedIn()" routerLink="/login" (click)="authService.logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      Logout
+    </button>
+  </div>
+  <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-menu x-position="before" #menu="matMenu">
+  <button mat-menu-item routerLink="/profile" *ngIf="authService.isLogedIn()">
+    <mat-icon>profile</mat-icon>
+    Profile
+  </button>
+  <button mat-menu-item routerLink="/" *ngIf="authService.isLogedIn()">
+    <mat-icon>home</mat-icon>
+    Home
+  </button>
+  <button mat-menu-item *ngIf="authService.isLogedIn()">
+    <mat-icon>notification_important</mat-icon>
+    notification
+  </button>
+  <button mat-menu-item routerLink="/login" *ngIf="!authService.isLogedIn()">
+    <mat-icon>power_settings_new</mat-icon>
+    Login
+  </button>
+
+  <button mat-menu-item *ngIf="authService.isLogedIn()" routerLink="/login" (click)="authService.logout()">
+    <mat-icon>exit_to_app</mat-icon>
+    Logout
+  </button>
+</mat-menu>
+<router-outlet></router-outlet>

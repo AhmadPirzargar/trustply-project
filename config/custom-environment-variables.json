@@ -1,0 +1,5 @@
+{
+  "db": {
+    "pass":"app_db_pass"
+  }
+}

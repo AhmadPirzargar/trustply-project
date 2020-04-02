@@ -1,0 +1,6 @@
+{
+  "name":"prod-demo",
+  "db":{
+    "host":"localhost"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "demo",
+  "db": {
+    "host":"localhost",
+    "name": "trustply-db",
+    "user": "root"
+  }
+}
