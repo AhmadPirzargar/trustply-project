@@ -1,6 +1,6 @@
 <mat-toolbar color="primary" class="expanded-toolbar">
-    <span>
-      <button mat-button routerLink="/">
+    <span fxHide.lt-md="true">
+      <button mat-button routerLink="/" >
         <img src="../assets/logo.png" height="32"/>
       </button>
       <button mat-button *ngIf="authService.isLogedIn()" (click)="openNotifications()">
@@ -26,6 +26,10 @@
   </button>
 </mat-toolbar>
 <mat-menu x-position="before" #menu="matMenu">
+  <button mat-menu-item *ngIf="authService.isLogedIn()" (click)="openNotifications()">
+    <mat-icon [matBadge]="notifies.length" matBadgeColor="warn">notification_important</mat-icon>
+    notification
+  </button>
   <button mat-menu-item routerLink="/profile" *ngIf="authService.isLogedIn()">
     <mat-icon>account_circle</mat-icon>
     Profile

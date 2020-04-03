@@ -1,6 +1,6 @@
 <mat-card  style="background: azure">
 
-  <mat-card-header fxLayout="row" fxLayoutAlign="space-between start" >
+  <mat-card-header fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="space-between start" >
     <mat-card-title fxLayoutAlign="start">from: {{notification.from}}</mat-card-title>
     <div >
       <button mat-mini-fab color="primary" (click)="delete()">
