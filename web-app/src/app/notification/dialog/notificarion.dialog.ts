@@ -9,7 +9,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
       <app-notification *ngFor="let n of data" [notification]="n" ></app-notification>
     </div>
     <div mat-dialog-actions>
-      <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+      <button mat-button cdkFocusInitial>Ok</button>
     </div>
   `
 })
