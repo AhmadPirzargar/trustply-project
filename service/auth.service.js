@@ -14,9 +14,10 @@ async function basicAuth(req, res, next) {
     const [username, password] = credentials.split(':');
     try {
         userService.getByUserId(username, (user) => {
-            if (user.pass === password)
+            if (user.pass === password) {
+                req.headers.currentuser = username;
                 next();
-            else
+            } else
                 return res.status(401).json({message: 'Invalid Authentication Credentials'});
         });
     } catch (e) {

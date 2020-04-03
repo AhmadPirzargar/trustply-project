@@ -3,3 +3,8 @@ mat-card {
   margin: 2em auto;
   text-align: center;
 }
+
+.profile-header-image {
+  background-image: url('../../assets/avatar.png');
+  background-size: cover;
+}

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UserService} from "../service/user.service";
+import {NotificationService} from "../service/notification.service";
 
 @Component({
   selector: 'app-home',
@@ -8,9 +10,14 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class HomeComponent implements OnInit {
 
-  userNotExist: boolean;
+  hasErr = false;
   form: FormGroup;
-  constructor(private fb: FormBuilder) {
+  users = [];
+  showProgressbar = false;
+
+  constructor(private fb: FormBuilder,
+              private userService: UserService,
+              private notificationService: NotificationService) {
 
   }
 
@@ -19,9 +26,26 @@ export class HomeComponent implements OnInit {
       userId: ['', Validators.required],
       message: ['', Validators.required]
     });
+    this.userService.getUsers().subscribe((users: []) => {
+      this.users = users;
+      console.log('users : ', users);
+    })
   }
 
   onSubmit() {
-
+    this.hasErr = this.form.value.userId === localStorage.getItem('userId');
+    if (this.hasErr) return;
+    this.showProgressbar = true;
+    this.notificationService.send(
+      {
+        from: localStorage.getItem('userId'),
+        to: this.form.value.userId,
+        message: this.form.value.message
+      }).subscribe(result => {
+      this.showProgressbar = false;
+      this.form.reset();
+    }, err => {
+      this.showProgressbar = false;
+    })
   }
 }

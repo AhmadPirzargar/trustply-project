@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from '../../environments/environment';
 import {Observable} from "rxjs/internal/Observable";
 
@@ -13,11 +13,19 @@ export class ProfileService {
   constructor(private http: HttpClient) {
   }
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Authorization': localStorage.getItem('token')
+    })
+  };
+
   getUser() {
     const userId = localStorage.getItem('userId');
-    if (userId)
-      return this.http.get(this.baseUrl + '/api/users/' + userId);
-    else
+    console.log('profileservice userid : ', userId);
+    if (userId) {
+
+      return this.http.get(this.baseUrl + '/api/users/' + userId, this.httpOptions);
+    } else
       return Observable.throw('userId notfound');
 
   }
@@ -25,7 +33,7 @@ export class ProfileService {
   update(user: { userId, name, socialLink }) {
     const userId = localStorage.getItem('userId');
     if (userId)
-      return this.http.put(this.baseUrl + '/api/users/' + userId, user);
+      return this.http.put(this.baseUrl + '/api/users/' + userId, user, this.httpOptions);
     else Observable.throw('userid notfound');
   }
 }

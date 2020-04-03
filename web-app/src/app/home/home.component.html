@@ -2,24 +2,27 @@
   <mat-card-content>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <h2>send notification</h2>
-      <mat-error *ngIf="userNotExist">
-        The username and password were not recognised
+      <mat-error *ngIf="hasErr">
+        invalid notification
       </mat-error>
       <mat-form-field class="full-width-input">
-        <mat-label>to</mat-label>
-        <input matInput placeholder="to" formControlName="userId" required>
+        <input type="text" matInput placeholder="to" formControlName="userId" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let user of users" [value]="user.userId">{{user.userId}}</mat-option>
+        </mat-autocomplete>
         <mat-error>
           Please provide a valid destination userId
         </mat-error>
       </mat-form-field>
       <mat-form-field class="full-width-input">
-        <mat-label>comment</mat-label>
+        <mat-label>message</mat-label>
         <input matInput placeholder="comment" formControlName="message" required>
         <mat-error>
           Please write message
         </mat-error>
       </mat-form-field>
-      <button mat-raised-button color="primary">send</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid || showProgressbar">send</button>
     </form>
   </mat-card-content>
+  <mat-progress-bar *ngIf="showProgressbar" mode="indeterminate"></mat-progress-bar>
 </mat-card>

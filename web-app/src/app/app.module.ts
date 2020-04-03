@@ -13,7 +13,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatDividerModule} from '@angular/material/divider';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
@@ -23,16 +24,26 @@ import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
+import { NotificationComponent } from './notification/notification.component';
+import {MatBadgeModule} from '@angular/material/badge'
+import {MatDialogModule} from '@angular/material/dialog'
+import {NotificarionDialog} from "./notification/dialog/notificarion.dialog";
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    NotificationComponent,
+    NotificarionDialog
   ],
   imports: [
     BrowserModule,
+    MatBadgeModule,
+    MatDialogModule,
     FormsModule,
+    MatAutocompleteModule,
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
@@ -46,7 +57,7 @@ import { ProfileComponent } from './profile/profile.component';
     MatTableModule,
     MatDividerModule,
     MatSlideToggleModule,
-    MatProgressSpinnerModule,
+    MatProgressBarModule,
     MatSelectModule,
     BrowserAnimationsModule,
     FlexLayoutModule

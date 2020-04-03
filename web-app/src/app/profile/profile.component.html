@@ -1,19 +1,28 @@
-<mat-card class="example-card">
+<mat-card>
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{user.userId}}</mat-card-title>
-    <mat-card-subtitle>{{user.socialLink}}</mat-card-subtitle>
+    <div mat-card-avatar class="profile-header-image"></div>
+    <mat-card-title>{{userId}}</mat-card-title>
+    <mat-card-subtitle>{{sociallink}}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
   <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
-    </p>
+    <div fxLayout="column" fxLayoutAlign="center stretch">
+      <mat-form-field>
+        <mat-label>User ID</mat-label>
+        <input matInput [(ngModel)]="userId">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>name</mat-label>
+        <input matInput [(ngModel)]="name">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Social Network link</mat-label>
+        <input matInput [(ngModel)]="sociallink">
+      </mat-form-field>
+    </div>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
+    <button mat-raised-button [disabled]="showProgressBar" (click)="saveChnage()" color="primary">save</button>
+    <button mat-raised-button color="warn">social link</button>
   </mat-card-actions>
+  <mat-progress-bar *ngIf="showProgressBar" mode="indeterminate"></mat-progress-bar>
 </mat-card>
