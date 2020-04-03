@@ -3,7 +3,7 @@
       <button mat-button routerLink="/">
         <img src="../assets/logo.png" height="32"/>
       </button>
-      <button mat-button  *ngIf="authService.isLogedIn()" (click)="openNotifications()">
+      <button mat-button *ngIf="authService.isLogedIn()" (click)="openNotifications()">
         <mat-icon [matBadge]="notifies.length" matBadgeColor="warn">notification_important</mat-icon>
       </button>
       <button mat-button routerLink="/"><mat-icon>home</mat-icon></button>
@@ -27,17 +27,14 @@
 </mat-toolbar>
 <mat-menu x-position="before" #menu="matMenu">
   <button mat-menu-item routerLink="/profile" *ngIf="authService.isLogedIn()">
-    <mat-icon>profile</mat-icon>
+    <mat-icon>account_circle</mat-icon>
     Profile
   </button>
   <button mat-menu-item routerLink="/" *ngIf="authService.isLogedIn()">
     <mat-icon>home</mat-icon>
     Home
   </button>
-  <button mat-menu-item *ngIf="authService.isLogedIn()" (click)="openNotifications()">
-    <mat-icon [matBadge]="notifies.length" matBadgeColor="warn">notification_important</mat-icon>
-    notification
-  </button>
+
   <button mat-menu-item routerLink="/login" *ngIf="!authService.isLogedIn()">
     <mat-icon>power_settings_new</mat-icon>
     Login

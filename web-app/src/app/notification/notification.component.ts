@@ -8,7 +8,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class NotificationComponent implements OnInit {
 
   @Input() notification;
-  @Output() click = new EventEmitter();
+  @Output() deleteEvent = new EventEmitter();
   sentTime: Date;
   constructor() {
     this.sentTime = new Date;
@@ -16,7 +16,7 @@ export class NotificationComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  onClick(){
-    this.click.emit(this.notification)
+  delete(){
+    this.deleteEvent.emit(this.notification)
   }
 }

@@ -28,6 +28,8 @@ import { NotificationComponent } from './notification/notification.component';
 import {MatBadgeModule} from '@angular/material/badge'
 import {MatDialogModule} from '@angular/material/dialog'
 import {NotificarionDialog} from "./notification/dialog/notificarion.dialog";
+import {MatChipsModule} from "@angular/material/chips";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import {NotificarionDialog} from "./notification/dialog/notificarion.dialog";
   ],
   imports: [
     BrowserModule,
+    MatButtonToggleModule,
+    MatChipsModule,
     MatBadgeModule,
     MatDialogModule,
     FormsModule,
